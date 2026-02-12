@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kutty Ma ❤️ Fradu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#000;color:#fff;overflow-x:hidden}
+section{min-height:100vh;padding:70px 20px;text-align:center;position:relative}
+
+h1,h2{font-family:'Great Vibes'}
+h1{font-size:58px}
+h2{font-size:46px;margin-bottom:20px}
+
+/* 🌌 STARRY BACKGROUND */
+.stars, .stars:after {
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:url("https://i.imgur.com/7b1rF5Y.png");
+animation:moveStars 100s linear infinite;
+z-index:-2
+}
+.stars:after{
+content:"";opacity:.5;animation-duration:200s
+}
+@keyframes moveStars{
+from{background-position:0 0}
+to{background-position:-10000px 5000px}
+}
+
+/* 🔐 PASSWORD */
+#lock{
+position:fixed;inset:0;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;align-items:center;justify-content:center;
+z-index:9999
+}
+.lock-box{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+padding:30px;border-radius:25px;
+width:90%;max-width:360px
+}
+.lock-box input,button{
+width:100%;padding:12px;
+border:none;border-radius:20px;margin-top:12px
+}
+button{background:#ff3e6c;color:#fff}
+
+/* 💖 HEART CURSOR */
+.heart{
+position:fixed;font-size:18px;
+pointer-events:none;
+animation:fade 1s forwards
+}
+@keyframes fade{
+to{opacity:0;transform:translateY(-30px)}
+}
+
+/* ✨ HERO */
+#hero{display:flex;flex-direction:column;justify-content:center}
+#hero span{opacity:.8;margin-top:10px}
+
+/* ⌛ COUNTDOWN */
+#countdown{font-size:22px;margin-top:20px}
+
+/* ✍️ TYPEWRITER */
+#letter{max-width:600px;margin:auto;font-size:18px}
+
+/* 📜 TIMELINE */
+.event{
+border-left:3px solid #ff7eb3;
+padding-left:15px;margin:25px 0;
+opacity:0;transform:translateY(30px);
+transition:1s
+}
+.event.show{opacity:1;transform:none}
+
+/* 🎁 GIFTS */
+.gifts{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.gift{
+width:200px;height:200px;
+background:linear-gradient(135deg,#ff4d6d,#ff758c);
+border-radius:25px;
+display:flex;align-items:center;justify-content:center;
+font-size:22px;cursor:pointer;
+transition:.4s
+}
+.gift:hover{transform:scale(1.1)}
+
+/* 😈 TRICK */
+.trick img{width:90px;margin:10px}
+#insta{position:relative}
+
+/* 📸 GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px
+}
+.gallery img{
+width:100%;border-radius:15px;transition:.4s
+}
+.gallery img:hover{transform:scale(1.1)}
+
+/* 💋 FINAL */
+#final{background:radial-gradient(circle,#ff9a9e,#000)}
+.kiss{font-size:80px;animation:pulse 1.5s infinite}
+@keyframes pulse{
+50%{transform:scale(1.3)}
+}
+</style>
+</head>
+
+<body>
+<div class="stars"></div>
+
+<audio id="bg" src="song.mp3" loop></audio>
+<audio id="love" src="epadivanthayoo.mp3" loop></audio>
+
+<!-- PASSWORD -->
+<div id="lock">
+<div class="lock-box">
+<h2>Only for Kutty Ma ❤️</h2>
+<input type="password" id="pass" placeholder="Secret word">
+<button onclick="unlock()">Unlock Love</button>
+</div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+<h1>Kutty Ma ❤️ Fradu</h1>
+<span>You came when I was alone… now I have everything</span>
+<div id="countdown"></div>
+</section>
+
+<!-- LETTER -->
+<section>
+<h2>My Love Letter ✍️</h2>
+<p id="letter"></p>
+</section>
+
+<!-- STORY -->
+<section>
+<h2>Our Journey</h2>
+<div class="event">✨ Oct 13 – You entered my life</div>
+<div class="event">🥹 Nov 5 – You cried for me</div>
+<div class="event">📱 Mar 5 – First video call</div>
+<div class="event">💔 May 13 – Little breakup</div>
+<div class="event">❤️ Oct 10 – Patch up</div>
+<div class="event">🎉 Oct 20 – First meet surprise</div>
+<div class="event">👨‍👧 Dec 20 – I became your father</div>
+</section>
+
+<!-- GIFTS -->
+<section>
+<h2>Your Gifts 🎁</h2>
+<div class="gifts">
+<div class="gift">Gift 1 💖</div>
+
+<div class="gift trick">
+<img src="me.jpg" onclick="openGallery()">
+<img src="insta.png" id="insta">
+</div>
+
+<div class="gift" onclick="finalGift()">Gift 3 💋</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="display:none">
+<h2>Our Memories 📸</h2>
+<div class="gallery">
+<img src="p1.jpg"><img src="p2.jpg"><img src="p3.jpg"><img src="p4.jpg"><img src="p5.jpg">
+<img src="p6.jpg"><img src="p7.jpg"><img src="p8.jpg"><img src="p9.jpg"><img src="p10.jpg">
+</div>
+</section>
+
+<!-- FINAL -->
+<section id="final">
+<h2>Forever Yours</h2>
+<div class="kiss">💋</div>
+<p>I will always choose you.</p>
+</section>
+
+<script>
+/* PASSWORD */
+function unlock(){
+if(pass.value==="kdfradu"){
+lock.style.display="none";
+bg.play();
+}else alert("Wrong ❤️");
+}
+
+/* HEART CURSOR */
+document.addEventListener("mousemove",e=>{
+let h=document.createElement("div");
+h.className="heart";h.innerHTML="❤️";
+h.style.left=e.pageX+"px";
+h.style.top=e.pageY+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),1000);
+});
+
+/* INSTAGRAM RUN */
+insta.onmouseover=()=>{
+insta.style.left=Math.random()*120-60+"px";
+insta.style.top=Math.random()*120-60+"px";
+}
+
+/* GALLERY */
+function openGallery(){
+gallery.style.display="block";
+bg.pause();love.play();
+location.href="#gallery";
+}
+
+/* FINAL */
+function finalGift(){
+location.href="#final";
+}
+
+/* TYPEWRITER */
+const text="Unlimited calls and video calls… You made me happier than anyone. I was alone, now I have everything because of you.";
+let i=0;
+setInterval(()=>{
+if(i<text.length)letter.innerHTML+=text.charAt(i++);
+},50);
+
+/* SCROLL REVEAL */
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".event").forEach(e=>{
+if(e.getBoundingClientRect().top<window.innerHeight-50)
+e.classList.add("show");
+});
+});
+
+/* COUNTDOWN */
+const val=new Date("Feb 14, 2026").getTime();
+setInterval(()=>{
+let d=val-new Date().getTime();
+countdown.innerHTML="⏳ "+Math.floor(d/86400000)+" days to Valentine’s";
+},1000);
+</script>
+</body>
+</html>
