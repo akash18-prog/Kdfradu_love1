@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg,#0f0c29,#302b63,#24243e);
+  color: white;
+  overflow-x: hidden;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 30px;
+  text-align: center;
+}
+
+.active { display: block; }
+
+.lock-card {
+  margin-top: 40%;
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 20px;
+  animation: fade 1s;
+}
+
+input, button {
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+  width: 80%;
+}
+
+button {
+  background: pink;
+  font-weight: bold;
+}
+
+#error { color: red; display: none; }
+
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.gift {
+  background: linear-gradient(135deg,#ff758c,#ff7eb3);
+  margin: 20px auto;
+  padding: 40px;
+  border-radius: 30px;
+  width: 80%;
+  font-size: 24px;
+  animation: float 3s infinite;
+}
+
+.timeline p {
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.choices {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.me, .insta {
+  width: 120px;
+  border-radius: 20px;
+}
+
+.gallery {
+  display: none;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 20px;
+}
+
+.letter {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 20px;
+  line-height: 1.6;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
