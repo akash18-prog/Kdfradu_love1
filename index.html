@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kutty Ma 💖</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kutty Ma 💖</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -12,11 +12,11 @@
 <audio id="song" src="song.mp3" loop></audio>
 <audio id="loveSong" src="epadivanthayoo.mp3" loop></audio>
 
-<!-- 🔐 PASSWORD SCREEN -->
+<!-- 🔐 PASSWORD -->
 <div id="lockScreen" class="screen active">
   <div class="lock-card">
     <h1>Only for Kutty Ma 💝</h1>
-    <input type="password" id="password" placeholder="Enter Password"/>
+    <input type="password" id="password" placeholder="Password">
     <button onclick="unlock()">Unlock 💖</button>
     <p id="error">Wrong password 💔</p>
   </div>
@@ -27,28 +27,27 @@
   <h1 class="title">Your Gifts 🎁</h1>
   <div class="gift" onclick="openGift('gift1')">Gift 1 ✨</div>
   <div class="gift" onclick="openGift('gift2')">Gift 2 💞</div>
-  <div class="gift" onclick="openGift('gift3')">Gift 3 💋</div>
+  <div class="gift" onclick="openGift('gift3')">Gift 3 💌</div>
+  <div class="gift" onclick="openGift('gift4')">Gift 4 💋</div>
 </div>
 
-<!-- 🎁 GIFT 1 – LOVE STORY -->
+<!-- 🎁 GIFT 1 -->
 <div id="gift1" class="screen">
   <h2>Our Love Story 💖</h2>
   <div class="timeline">
     <p>💗 Oct 13 – You entered my life</p>
-    <p>🎂 Oct 20 – Your Birthday</p>
-    <p>🎉 Nov 11 – My Birthday</p>
     <p>🥺 Nov 5 – You cried for me</p>
-    <p>📞 Mar 5 – First Video Call</p>
+    <p>📞 Mar 5 – First video call</p>
     <p>💔 May 13 – Little breakup</p>
     <p>💞 Oct 10 – Patchup</p>
-    <p>✨ Oct 20 2023 – First Meet</p>
-    <p>✨ Oct 20 2024 – Second Meet</p>
-    <p>💚 July 4 2025 – Third Meet</p>
+    <p>✨ Oct 20 2023 – First meet</p>
+    <p>✨ Oct 20 2024 – Second meet</p>
+    <p>💚 July 4 2025 – Third meet</p>
   </div>
   <button onclick="goBack()">Back</button>
 </div>
 
-<!-- 🎁 GIFT 2 – WHO IS IMPORTANT -->
+<!-- 🎁 GIFT 2 -->
 <div id="gift2" class="screen">
   <h2>Who is important for you? 🤍</h2>
 
@@ -58,41 +57,30 @@
   </div>
 
   <div id="gallery" class="gallery">
-    <img src="p1.jpg">
-    <img src="p2.jpg">
-    <img src="p3.jpg">
-    <img src="p4.jpg">
-    <img src="p5.jpg">
-    <img src="p6.jpg">
-    <img src="p7.jpg">
-    <img src="p8.jpg">
-    <img src="p9.jpg">
+    <img src="p1.jpg"><img src="p2.jpg"><img src="p3.jpg">
+    <img src="p4.jpg"><img src="p5.jpg"><img src="p6.jpg">
+    <img src="p7.jpg"><img src="p8.jpg"><img src="p9.jpg">
     <img src="p10.jpg">
   </div>
 
   <button onclick="goBack()">Back</button>
 </div>
 
-<!-- 🎁 GIFT 3 – FINAL LOVE -->
+<!-- 🎁 GIFT 3 -->
 <div id="gift3" class="screen">
   <h2>For You My Pondati 💖</h2>
   <p class="letter">
 En life la una vida nalla dhevathai🧚🏻‍♀️ enaku kidaikamata😙...  
-intha ulagathula ena athigama luv panura ore person en pondati ni matum tha d🙈....  
-Una vida yarum ena ivlo nalla care panavo mudiyathu d pondatiiii🦋....  
-en life la enaku kidacha sirprise nd lucky charm d 💝....  
-life long unkuda travel pananum nu asa paduren d pondatiiii 💚....  
-Una happy ah pathukanum atha enoda periya asa❤‍🔥....  
-unagaga na evalow kastatha venalum thangipen d🧡...  
-Una vitu enala oru sec kuda iruka mudiyathu d thangoo🤍.....  
-una thavira vera ponna ninachi kuda paka mudiyathu d kutty ma 💙...  
-Unaku na oru nalla appa va irukanum nu asa paduren d mayilu 🦚...  
-daily um ena ala vachite konjikite sanda potukite irupiya d kutty ma 🥵....  
-evalow sanda vanthalum piriya kudathu🥹...  
-avalow strong nama luv irukanum d pondatiiii👸🏻...  
 I love you my chella pondatiiii✨  
 Happy Valentine’s Day 🌹
   </p>
+  <button onclick="goBack()">Back</button>
+</div>
+
+<!-- 🎁 GIFT 4 -->
+<div id="gift4" class="screen kiss-bg">
+  <h1 class="kiss">💋</h1>
+  <div class="hearts">💖 💕 ❤️ 💗 💓 💞</div>
   <button onclick="goBack()">Back</button>
 </div>
 
