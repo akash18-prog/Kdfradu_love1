@@ -1,14 +1,13 @@
-const song = document.getElementById("song");
+const bgSong = document.getElementById("bgSong");
 const loveSong = document.getElementById("loveSong");
 
-song.play();
-
 function unlock() {
-  if (password.value === "kdfradu") {
-    lockScreen.classList.remove("active");
+  if (pass.value === "kdfradu") {
+    lock.classList.remove("active");
     main.classList.add("active");
+    bgSong.play(); // ✅ STARTS HERE (FIXED)
   } else {
-    error.style.display = "block";
+    err.style.display = "block";
   }
 }
 
@@ -16,28 +15,28 @@ function openGift(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  if (id === "gift2") {
-    song.pause();
+  if (id === "g2") {
+    bgSong.pause();
     loveSong.play();
   } else {
     loveSong.pause();
-    song.play();
+    bgSong.play();
   }
 }
 
-function goBack() {
+function back() {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   main.classList.add("active");
   loveSong.pause();
-  song.play();
+  bgSong.play();
+}
+
+function showGallery() {
+  document.getElementById("gallery").style.display = "block";
 }
 
 const insta = document.getElementById("insta");
 insta.addEventListener("mouseover", () => {
   insta.style.transform =
-    `translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+    `translate(${Math.random()*150-75}px,${Math.random()*150-75}px)`;
 });
-
-function chooseMe() {
-  document.getElementById("gallery").style.display = "block";
-}
