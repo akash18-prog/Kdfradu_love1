@@ -3,97 +3,292 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kutty Ma 🤍</title>
-<link rel="stylesheet" href="style.css">
+<title>Kutty Ma 🌌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Playfair Display',serif}
+
+body{
+  background:radial-gradient(circle at bottom,#1b1f3b,#04000a);
+  color:#fff;
+}
+
+/* Galaxy stars */
+.stars{
+  position:fixed;inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ccircle cx='1' cy='1' r='1' fill='white'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  animation:stars 120s linear infinite;
+  opacity:.25;
+}
+@keyframes stars{to{transform:translateY(-2000px)}}
+
+.center{
+  position:relative;z-index:2;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:20px;
+}
+
+.card{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+  border-radius:24px;
+  padding:30px;
+  width:100%;max-width:380px;
+  box-shadow:0 0 40px rgba(255,78,205,.35);
+}
+
+input{
+  width:100%;padding:14px;
+  border-radius:30px;border:none;
+  text-align:center;font-size:16px;
+  margin-top:18px;
+}
+
+button{
+  margin-top:20px;
+  padding:14px 28px;
+  border:none;border-radius:30px;
+  background:linear-gradient(45deg,#ff4ecd,#6a5cff);
+  color:#fff;font-size:16px;
+  box-shadow:0 0 25px rgba(255,78,205,.6);
+  cursor:pointer;transition:.3s;
+}
+button:hover{transform:scale(1.08)}
+
+.hidden{display:none}
+
+.shake{animation:shake .35s}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
+
+/* Home gifts */
+.gifts{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  width:100%;max-width:420px;
+}
+.gift{
+  padding:30px;border-radius:22px;
+  background:rgba(255,255,255,.08);
+  box-shadow:0 0 25px rgba(255,78,205,.4);
+  transition:.4s;
+}
+.gift:hover{transform:translateY(-8px) scale(1.05)}
+
+section{
+  position:absolute;inset:0;
+  padding:30px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+}
+
+/* Timeline */
+.timeline{max-width:700px}
+.node{
+  margin:35px 0;
+  padding-left:25px;
+  border-left:3px solid #ff4ecd;
+  text-align:left;
+}
+
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;margin-top:20px;
+}
+.gallery img{
+  width:100%;border-radius:14px;
+  transition:.5s;
+}
+.gallery img:hover{transform:scale(1.15)}
+
+/* Proposal */
+#gift4{
+  background:url(p4.jpg) center/cover no-repeat;
+}
+.heart{
+  position:fixed;
+  width:20px;height:20px;
+  background:red;
+  transform:rotate(45deg);
+  animation:float 2s forwards;
+}
+.heart::before,.heart::after{
+  content:"";
+  position:absolute;width:20px;height:20px;
+  background:red;border-radius:50%;
+}
+.heart::before{top:-10px;left:0}
+.heart::after{left:-10px;top:0}
+@keyframes float{
+  to{transform:translateY(-120vh) rotate(45deg);opacity:0}
+}
+
+/* Confetti */
+.confetti{
+  position:fixed;width:8px;height:14px;
+  bottom:0;animation:shoot 1.8s forwards;
+}
+@keyframes shoot{
+  to{transform:translate(var(--x),-120vh) rotate(720deg);opacity:0}
+}
+</style>
 </head>
+
 <body>
+<div class="stars"></div>
 
-<!-- 🎵 MUSIC -->
 <audio id="bg" src="bg.mp3" loop></audio>
-<audio id="song1" src="song1.mp3" loop></audio>
-<audio id="song2" src="song2.mp3" loop></audio>
-<audio id="song3" src="song3.mp3" loop></audio>
-<audio id="song4" src="song4.mp3" loop></audio>
+<audio id="s1" src="song1.mp3"></audio>
+<audio id="s2" src="song2.mp3"></audio>
+<audio id="s3" src="song3.mp3"></audio>
+<audio id="s4" src="song4.mp3"></audio>
 
-<!-- 🔐 PASSWORD -->
-<div id="lockScreen" class="screen active">
-  <div class="card">
-    <h2>Only for Kutty Ma 🤍</h2>
-    <input type="password" id="password" placeholder="Enter password">
-    <button onclick="unlock()">Unlock 💖</button>
-    <p id="error">Go and ask your Fradu 🤍</p>
+<!-- PASSWORD -->
+<div class="center" id="lock">
+  <div class="card" id="lockCard">
+    <h2>Only for Kutty Ma</h2>
+    <input id="pwd" type="password" placeholder="Password">
+    <button onclick="unlock()">Unlock</button>
+    <p id="err"></p>
   </div>
 </div>
 
-<!-- 🎁 MAIN -->
-<div id="main" class="screen">
-  <h1 class="title">Your Gifts 🎁</h1>
-  <div class="gift" onclick="openGift('gift1')">🌿 Gift 1 – Our Story</div>
-  <div class="gift" onclick="openGift('gift2')">🤍 Gift 2 – Choose</div>
-  <div class="gift" onclick="openGift('gift3')">💌 Gift 3 – Letter</div>
-  <div class="gift" onclick="openGift('gift4')">💍 Gift 4 – Proposal</div>
+<!-- HOME -->
+<div class="center hidden" id="home">
+  <h2>Welcome to My Universe 🌌</h2><br>
+  <div class="gifts">
+    <div class="gift" onclick="openGift(1)">🎁 Gift 1</div>
+    <div class="gift" onclick="openGift(2)">🎁 Gift 2</div>
+    <div class="gift" onclick="openGift(3)">🎁 Gift 3</div>
+    <div class="gift" onclick="openGift(4)">🎁 Gift 4</div>
+  </div>
 </div>
 
-<!-- 🎁 GIFT 1 -->
-<div id="gift1" class="screen">
-  <h2>Our Love Story 🌿</h2>
-  <div class="timeline">
-    <div class="event">💗 Oct 13 – You entered my life</div>
-    <div class="event">🥺 Nov 5 – You cried for me</div>
-    <div class="event">📞 Mar 5 – First video call</div>
-    <div class="event">💔 May 13 – Little breakup</div>
-    <div class="event">💞 Oct 10 – Patchup</div>
-    <div class="event">✨ Oct 20 2023 – First meet</div>
-    <div class="event">✨ Oct 20 2024 – Second meet</div>
-    <div class="event">💚 July 4 2025 – Third meet</div>
-  </div>
-  <button onclick="goBack()">⬅ Back</button>
+<!-- GIFT 1 -->
+<section id="gift1" class="hidden">
+<h2>Our Love Story</h2>
+<div class="timeline">
+  <div class="node">Oct 13 – You entered my life</div>
+  <div class="node">Nov 5 – You cried for me</div>
+  <div class="node">Dec 20 – I stood as your strength</div>
+  <div class="node">Oct 20 – Our first meet</div>
 </div>
+<button onclick="back()">Back</button>
+</section>
 
-<!-- 🎁 GIFT 2 -->
-<div id="gift2" class="screen">
-  <h2>Who is important for you? 🤍</h2>
-  <div class="choices">
-    <img src="me.jpg" class="choice-img" onclick="chooseMe()">
-    <img src="insta.png" class="choice-img" id="insta">
-  </div>
-
-  <div id="gallery" class="gallery">
-    <img src="p1.jpg"><img src="p2.jpg"><img src="p3.jpg"><img src="p4.jpg">
-    <img src="p5.jpg"><img src="p6.jpg"><img src="p7.jpg"><img src="p8.jpg">
-    <img src="p9.jpg"><img src="p10.jpg">
-  </div>
-
-  <button onclick="goBack()">⬅ Back</button>
+<!-- GIFT 2 -->
+<section id="gift2" class="hidden">
+<h2>Who is important for you?</h2><br>
+<img src="me.jpg" width="140" onclick="showGallery()">
+<img src="insta.png" width="140" id="insta"><br>
+<div class="gallery hidden" id="gallery">
+<img src="p1.jpg"><img src="p2.jpg"><img src="p3.jpg"><img src="p4.jpg">
+<img src="p5.jpg"><img src="p6.jpg"><img src="p7.jpg"><img src="p8.jpg">
+<img src="p9.jpg"><img src="p10.jpg">
 </div>
+<button onclick="back()">Back</button>
+</section>
 
-<!-- 🎁 GIFT 3 -->
-<div id="gift3" class="screen">
-  <h2>For You My Pondati 🤍</h2>
-  <p class="letter">
+<!-- GIFT 3 -->
+<section id="gift3" class="hidden">
+<h2>For You</h2>
+<p style="max-width:700px;font-size:18px;line-height:1.8">
 En life la una vida nalla dhevathai🧚🏻‍♀️ enaku kidaikamata😙...  
-intha ulagathula ena athigama luv panura ore person en pondati ni matum tha d🙈....  
-Una vida yarum ena ivalow nalla care panavo pathukavo mudiyathu d pondatiiii🦋....  
-en life la enaku kidacha sirprise nd lucky charm d 💝....  
-life long unkuda travel pananum nu asai paduren d pondatiiii 💚....  
-Una happy ah pathukanum atha enoda periya asa❤‍🔥....  
-daily um ena ala vachite konjikite sanda potukite intha poriki kuda irupiya d kutty ma ???🥵  
-avalow strong nama luv irukanum d pondatiiii👸🏻  
-I love you my chella pondatiiii✨  
+intha ulagathula ena athigama luv panura ore person en pondati ni matum tha d🙈...  
+life long unkuda travel pananum nu asa paduren d pondatiiii 💚  
+I love you my chella pondatiiii ✨  
 Happy Valentine’s Day 🌹
-  </p>
-  <button onclick="goBack()">⬅ Back</button>
-</div>
+</p>
+<button onclick="back()">Back</button>
+</section>
 
-<!-- 🎁 GIFT 4 -->
-<div id="gift4" class="screen gift4">
-  <div class="proposal">
-    <img src="p4.jpg" class="proposal-img">
-    <h2>Will you marry me 🤍💍</h2>
-  </div>
-  <button onclick="goBack()">⬅ Back</button>
-</div>
+<!-- GIFT 4 -->
+<section id="gift4" class="hidden">
+<h2>Will you marry me 🤍💍</h2>
+<button onclick="yesHeart()">Yes</button>
+<button onclick="absoluteYes()">Absolutely Yes</button>
+<button onclick="back()">Back</button>
+</section>
 
-<script src="script.js"></script>
+<script>
+let current=null;
+const bg=document.getElementById("bg");
+const songs=[null,s1,s2,s3,s4];
+bg.play();
+
+function unlock(){
+  if(pwd.value==="kdfradu"){
+    lock.classList.add("hidden");
+    home.classList.remove("hidden");
+    bg.play();
+  }else{
+    err.innerText="Go and ask your Fradu 🤍";
+    lockCard.classList.add("shake");
+    navigator.vibrate?.(300);
+    setTimeout(()=>lockCard.classList.remove("shake"),350);
+  }
+}
+
+function openGift(n){
+  home.classList.add("hidden");
+  bg.pause();
+  songs[n].play();
+  document.getElementById("gift"+n).classList.remove("hidden");
+  current=n;
+}
+
+function back(){
+  document.getElementById("gift"+current).classList.add("hidden");
+  songs[current].pause();
+  bg.play();
+  home.classList.remove("hidden");
+  current=null;
+}
+
+insta.onmouseover=()=>insta.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+
+function showGallery(){
+  gallery.classList.remove("hidden");
+}
+
+function yesHeart(){
+  for(let i=0;i<12;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.top="100vh";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
+  }
+}
+
+function absoluteYes(){
+  for(let i=0;i<35;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.background="#fff";
+    c.style.left=Math.random()<.5?"0":"100vw";
+    c.style.setProperty("--x",(Math.random()*300+100)*(Math.random()<.5?-1:1)+"px");
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1800);
+  }
+  setTimeout(()=>alert("En kolantha d ninu 👣"),700);
+}
+</script>
 </body>
 </html>
