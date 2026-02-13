@@ -1,13 +1,21 @@
-const bgSong = document.getElementById("bgSong");
+const song = document.getElementById("song");
 const loveSong = document.getElementById("loveSong");
+let songTime = 0;
+
+window.onload = () => {
+  song.play();
+};
 
 function unlock() {
-  if (pass.value === "kdfradu") {
-    lock.classList.remove("active");
+  const pwd = document.getElementById("password").value;
+  const error = document.getElementById("error");
+
+  if (pwd === "kdfradu") {
+    error.style.display = "none";
+    lockScreen.classList.remove("active");
     main.classList.add("active");
-    bgSong.play(); // ✅ STARTS HERE (FIXED)
   } else {
-    err.style.display = "block";
+    error.style.display = "block";
   }
 }
 
@@ -15,28 +23,31 @@ function openGift(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  if (id === "g2") {
-    bgSong.pause();
+  if (id === "gift2") {
+    songTime = song.currentTime;
+    song.pause();
     loveSong.play();
   } else {
     loveSong.pause();
-    bgSong.play();
+    song.currentTime = songTime;
+    song.play();
   }
 }
 
-function back() {
+function goBack() {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   main.classList.add("active");
   loveSong.pause();
-  bgSong.play();
-}
-
-function showGallery() {
-  document.getElementById("gallery").style.display = "block";
+  song.currentTime = songTime;
+  song.play();
 }
 
 const insta = document.getElementById("insta");
 insta.addEventListener("mouseover", () => {
   insta.style.transform =
-    `translate(${Math.random()*150-75}px,${Math.random()*150-75}px)`;
+    `translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 });
+
+function chooseMe() {
+  document.getElementById("gallery").style.display = "grid";
+}
